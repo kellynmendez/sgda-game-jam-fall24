@@ -22,14 +22,12 @@ public class Trash : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Floor"))
         {
-            Debug.Log("Clearing colliders, floor");
             _objsNotToTrigger.Clear();
             return;
         }
 
         if (other.gameObject.CompareTag("KillVolume"))
         {
-            Debug.Log("Clearing colliders, kill vol");
             _objsNotToTrigger.Clear();
             Destroy(gameObject);
             return;
@@ -43,8 +41,6 @@ public class Trash : MonoBehaviour
         {
             // Trash was picked up, disable trash
             player.AddTrashToPlayer(this);
-            Debug.Log("Current collider: " + PrintColliders());
-            Debug.Log("Clearing colliders, in trigger:   " + other.gameObject.name);
             _objsNotToTrigger.Clear();
             _objsNotToTrigger.Add(other.gameObject);
             Deactivate();
@@ -55,18 +51,7 @@ public class Trash : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(PrintColliders());
 
-    }
-
-    public string PrintColliders()
-    {
-        string objs = "";
-        foreach (GameObject obj in _objsNotToTrigger)
-        {
-            objs += obj.name + " ";
-        }
-        return objs;
     }
 
     public void ClearThenAddToCollidersNotToTrigger(Collider collider)

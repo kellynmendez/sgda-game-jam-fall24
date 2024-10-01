@@ -40,4 +40,21 @@ public class PlayerInputHandler : MonoBehaviour
             //    break;
         }
     }
+
+    public void SetPlayerJumpInput(CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                Debug.Log("Performed");
+                _playerController.Jump();
+                break;
+                //case InputActionPhase.Started:
+                //    Debug.Log("Started");
+                //    break;
+                //case InputActionPhase.Canceled:
+                //    Debug.Log("Canceled");
+                //    break;
+        }
+    }
 }

@@ -5,18 +5,17 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [Header("Trash Physics")]
-    [SerializeField] float shootVelocity = 1f;
+    [SerializeField] float shootForce = 1f;
+    [SerializeField] float shootUpwardForce = 1f;
 
     [Header("Miscellaneous")]
     [SerializeField] GameObject shootOrigin;
 
     private Stack<Trash> _playerTrash;
-    private Collider _collider;
 
     private void Awake()
     {
         _playerTrash = new Stack<Trash>();
-        _collider = GetComponent<Collider>();
     }
 
     public void AddTrashToPlayer(Trash trash)
@@ -38,7 +37,8 @@ public class PlayerShoot : MonoBehaviour
             Rigidbody rb = trashToShoot.GetComponent<Rigidbody>();
             if (rb)
             {
-                rb.velocity = trashToShoot.transform.forward * shootVelocity;
+                Vector3 forceToAdd = shootForce * trashToShoot.transform.forward + trashToShoot.transform.up * shootUpwardForce;
+                rb.AddForce(forceToAdd, ForceMode.Impulse);
             }
         }
         else
