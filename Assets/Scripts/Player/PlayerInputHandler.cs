@@ -17,15 +17,27 @@ public class PlayerInputHandler : MonoBehaviour
         int index = _playerInput.playerIndex;
         PlayerController[] playerCtrlrs = FindObjectsOfType<PlayerController>();
         _playerController = playerCtrlrs.FirstOrDefault(m => m.GetPlayerIndex() == index);
-        Debug.Log(index);
-        //if (index == 1)
-        //{
-        //    _playerInput.SwitchCurrentActionMap("MovementKeyboardRight");
-        //}
     }
 
     public void SetPlayerMoveInput(CallbackContext context)
     {
         _playerController.SetInputVector(context);
+    }
+
+    public void SetPlayerShootInput(CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                Debug.Log("Performed");
+                _playerController.gameObject.GetComponent<PlayerShoot>().Shoot();
+                break;
+            //case InputActionPhase.Started:
+            //    Debug.Log("Started");
+            //    break;
+            //case InputActionPhase.Canceled:
+            //    Debug.Log("Canceled");
+            //    break;
+        }
     }
 }

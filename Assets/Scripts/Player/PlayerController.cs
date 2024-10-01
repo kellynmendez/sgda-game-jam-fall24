@@ -31,11 +31,6 @@ public class PlayerController : MonoBehaviour
         _charController = GetComponent<CharacterController>();
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         Move();
@@ -48,12 +43,15 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        // If no input, don't change anything
         if (_inputVector == Vector2.zero)
             return;
 
+        // Moving character
         _moveDirection = new Vector3(_inputVector.x, 0f, _inputVector.y).normalized;
         _charController.Move(_moveDirection * playerSpeed * Time.deltaTime);
 
+        // Rotating character in move direction
         float targetAngle = Mathf.Atan2(-_moveDirection.z, _moveDirection.x) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currVelocity, turnSmoothTime);
         transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);

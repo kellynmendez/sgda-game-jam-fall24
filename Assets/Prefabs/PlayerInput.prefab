@@ -90,6 +90,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9c66b1a2-4552-4653-952a-594620b9b0ea
     m_ActionName: MovementKeyboardRight/KeyboardRight[/Keyboard/i,/Keyboard/k,/Keyboard/j,/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8160506744125094325}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: SetPlayerShootInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e488cb9d-40e5-49fd-9bf8-554f2f519e8a
+    m_ActionName: MovementKeyboardLeft/ShootLeft[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8160506744125094325}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: SetPlayerShootInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d87ef46b-0604-4c27-8759-dd6167e3c3f5
+    m_ActionName: MovementKeyboardRight/KeyboardShootRight[/Keyboard/semicolon]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: MovementKeyboardLeft

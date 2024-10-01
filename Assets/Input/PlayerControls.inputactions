@@ -6,13 +6,22 @@
             "id": "f803d570-33ce-4f1e-9f7b-bbd0efa21afd",
             "actions": [
                 {
-                    "name": "KeyboardLeft",
+                    "name": "KeyboardMvmtLeft",
                     "type": "Value",
                     "id": "f9f7bb16-66d5-4ae6-ab8a-bfce83e9c4dd",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "KeyboardShootLeft",
+                    "type": "Button",
+                    "id": "e488cb9d-40e5-49fd-9bf8-554f2f519e8a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -23,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardLeft",
+                    "action": "KeyboardMvmtLeft",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -34,7 +43,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardLeft",
+                    "action": "KeyboardMvmtLeft",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -45,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardLeft",
+                    "action": "KeyboardMvmtLeft",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -56,7 +65,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardLeft",
+                    "action": "KeyboardMvmtLeft",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -67,9 +76,20 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardLeft",
+                    "action": "KeyboardMvmtLeft",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7207fdb4-2ea2-48e7-a809-6673b0779c69",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyboardShootLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -78,13 +98,22 @@
             "id": "a5e532d0-fc3a-418b-a91e-be87c63209d2",
             "actions": [
                 {
-                    "name": "KeyboardRight",
+                    "name": "KeyboardMvmtRight",
                     "type": "Value",
                     "id": "9c66b1a2-4552-4653-952a-594620b9b0ea",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "KeyboardShootRight",
+                    "type": "Button",
+                    "id": "d87ef46b-0604-4c27-8759-dd6167e3c3f5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -95,7 +124,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardRight",
+                    "action": "KeyboardMvmtRight",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -106,7 +135,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardRight",
+                    "action": "KeyboardMvmtRight",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -117,7 +146,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardRight",
+                    "action": "KeyboardMvmtRight",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -128,7 +157,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardRight",
+                    "action": "KeyboardMvmtRight",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -139,9 +168,20 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyboardRight",
+                    "action": "KeyboardMvmtRight",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fa89e594-a661-41da-9601-9af6b13ff320",
+                    "path": "<Keyboard>/semicolon",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyboardShootRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
