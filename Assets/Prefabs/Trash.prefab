@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 3273184767594716053}
   - component: {fileID: 7925401694268547276}
   - component: {fileID: 8755573597894805530}
-  - component: {fileID: 4329382517703735367}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -116,13 +115,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4329382517703735367
+--- !u!1 &5705820505570156762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8498337420449772773}
+  - component: {fileID: 375953479218273521}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8498337420449772773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705820505570156762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2407725776473278394}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &375953479218273521
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151756807683716334}
+  m_GameObject: {fileID: 5705820505570156762}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -135,7 +166,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8761496226955612186
 GameObject:
@@ -147,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2407725776473278394}
   - component: {fileID: 126947382531331147}
-  - component: {fileID: 3687554674677853901}
+  - component: {fileID: 2489296576176916005}
   - component: {fileID: 1515073274450596665}
   m_Layer: 0
   m_Name: Trash
@@ -170,6 +201,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7377683222253781164}
+  - {fileID: 8498337420449772773}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &126947382531331147
@@ -199,7 +231,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &3687554674677853901
+--- !u!65 &2489296576176916005
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,4 +264,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b747968809736748a66e3b4ff50c5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _triggerToDisable: {fileID: 375953479218273521}
   _artToDisable: {fileID: 457349584063776855}

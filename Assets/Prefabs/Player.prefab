@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIndex: 0
-  playerSpeed: 15
+  playerSpeed: 10
   turnSpeed: 5
   turnSmoothTime: 0.05
   jumpHeight: 3
@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a5f5a8cc1f2504d91e710877e93e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 10
-  shootUpwardForce: 18
+  shootForce: 25
+  shootUpwardForce: 10
   shootOrigin: {fileID: 5178382080623513778}
 --- !u!1 &2410253054324978814
 GameObject:
@@ -349,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 5178382080623513778}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.58, y: 0, z: 0}
+  m_LocalPosition: {x: 0.502, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
