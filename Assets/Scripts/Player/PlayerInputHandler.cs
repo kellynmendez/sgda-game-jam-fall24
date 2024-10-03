@@ -29,7 +29,6 @@ public class PlayerInputHandler : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                Debug.Log("Performed");
                 _playerController.gameObject.GetComponent<PlayerShoot>().Shoot();
                 break;
             //case InputActionPhase.Started:
@@ -46,8 +45,7 @@ public class PlayerInputHandler : MonoBehaviour
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                Debug.Log("Performed");
-                _playerController.Jump();
+                //_playerController.Jump();
                 break;
                 //case InputActionPhase.Started:
                 //    Debug.Log("Started");

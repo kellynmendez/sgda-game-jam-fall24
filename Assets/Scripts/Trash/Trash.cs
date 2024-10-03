@@ -26,7 +26,6 @@ public class Trash : MonoBehaviour
         if(!_attachedToPlayer && player != null)
         {
             // Trash was picked up, disable trash
-            Debug.Log("added to player");
             player.AddTrashToPlayer(this);
             Deactivate();
             _attachedToPlayer = true;
@@ -41,7 +40,6 @@ public class Trash : MonoBehaviour
         PlayerShoot player = other.gameObject.GetComponent<PlayerShoot>();
         if (player != null)
         {
-            Debug.Log("removed from player");
             _attachedToPlayer = false;
             return;
         }
