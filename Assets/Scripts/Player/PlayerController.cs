@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+        ShootRay();
     }
 
     public int GetPlayerIndex()
@@ -78,9 +79,23 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
     }
 
+    private void ShootRay()
+    {
+        RaycastHit rayHitInfo;
+        Vector3 rayDirection = Vector3.down;
+
+        if (Physics.SphereCast(_groundCheck.position, _groundDistance, rayDirection, out rayHitInfo, 10))
+        {
+            Floor floor = rayHitInfo.transform.gameObject.GetComponent<Floor>();
+            if (floor)
+            {
+                floor.TriggerFloor();
+            }
+        }
+    }
+
     public void Jump()
     {
-        Debug.Log("attempting jump");
         if (_isGrounded)
         {
             Debug.Log("Jumping");
