@@ -10,15 +10,15 @@ public class Trash : MonoBehaviour
     [SerializeField] GameObject _artToDisable;
 
     private bool _attachedToPlayer = false;
+    private TrashPool _spawner;
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.CompareTag("KillVolume"))
-        //{
-        //    Destroy(gameObject);
-        //    return;
-        //}
-
+        if (other.gameObject.CompareTag("KillVolume"))
+        {
+            Kill();
+            return;
+        }
 
         // If the player is the one shooting this, don't trigger
         //   otherwise, allow player to pick up the trash
@@ -44,6 +44,11 @@ public class Trash : MonoBehaviour
             return;
         }
     }
+    
+    public void AssignSpawner(TrashPool spawner)
+    {
+        _spawner = spawner;
+    }
 
     public void Deactivate()
     {
@@ -54,5 +59,11 @@ public class Trash : MonoBehaviour
     {
         //_triggerToDisable.enabled = true;
         _artToDisable.SetActive(true);
+    }
+
+    public void Kill()
+    {
+        _spawner.AddTrashToRespawn(this.gameObject);
+        Deactivate();
     }
 }
