@@ -49,10 +49,13 @@ public class Floor : MonoBehaviour
         }
     }
 
-    public void TriggerFloor()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("floor triggered");
-        _fallTriggered = true;
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("floor triggered");
+            _fallTriggered = true;
+        }
     }
 
     private void DisableVisuals()

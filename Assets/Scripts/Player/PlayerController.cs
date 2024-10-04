@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        ShootRay();
+        //ShootRay();
     }
 
     public int GetPlayerIndex()
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
             Floor floor = rayHitInfo.transform.gameObject.GetComponent<Floor>();
             if (floor)
             {
-                floor.TriggerFloor();
+                //floor.TriggerFloor();
             }
         }
     }
