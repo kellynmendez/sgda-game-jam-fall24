@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [Header("Shoot Settings")]
     [SerializeField] float shootForce = 25f;
     [SerializeField] float shootUpwardForce = 10f;
+    [SerializeField] float shootDelay = 0.2f;
     [SerializeField] GameObject shootOrigin;
     [SerializeField] Transform trashPlacementsParent;
 
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     // Shoot variables
     private Stack<Trash> _playerTrash;
     private List<Transform> _trashPlacements;
+    private bool _held;
 
     // FX
     AudioSource _audioSource;
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
         _disableInput = false;
 
         // trash
+        _held = false;
         _playerTrash = new Stack<Trash>();
         _trashPlacements = new List<Transform>();
         foreach (Transform child in trashPlacementsParent)
@@ -153,7 +156,16 @@ public class PlayerController : MonoBehaviour
         _playerTrash.Push(trash);
     }
 
-    public void Shoot()
+    public void SetIsHeld(bool held)
+    {
+        _held = held;
+        if (_held)
+        {
+            StartCoroutine(FullShootRoutine(Shoot));
+        }
+    }
+
+    private void Shoot()
     {
         if (_playerTrash.Count > 0)
         {
@@ -197,6 +209,19 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Coroutines
+    private IEnumerator FullShootRoutine(System.Action ShootFn)
+    {
+        _disableInput = true;
+        while (_held)
+        {
+            yield return new WaitForSecondsRealtime(shootDelay);
+            if (_held)
+                ShootFn();
+        }
+        yield return null;
+        _disableInput = false;
+    }
+    
     private IEnumerator EndGame()
     {
         yield return new WaitForSecondsRealtime(0.2f);
