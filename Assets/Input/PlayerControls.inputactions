@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "KeyboardNext",
+                    "type": "Button",
+                    "id": "a27948e7-a0a4-4e83-83fe-e4027d7dfc98",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -110,6 +119,28 @@
                     "action": "KeyboardJumpLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "726fcdfb-7ab6-432f-8df5-e3b4fd0bff58",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyboardNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "288bd4d2-4d64-48f1-a6db-ff32631ca380",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyboardNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -139,6 +170,15 @@
                     "name": "KeyboardJumpRight",
                     "type": "Button",
                     "id": "66f9f4c4-bb30-467a-9b27-f61c00fe7e90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "KeyboardNext",
+                    "type": "Button",
+                    "id": "80254ecb-3e46-480d-80e7-235159ac587f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -220,6 +260,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "KeyboardJumpRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "400e95f9-265f-4023-8522-fae7794f32dc",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyboardNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67d3baef-b673-4e0a-aac4-173677fc4284",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeyboardNext",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
