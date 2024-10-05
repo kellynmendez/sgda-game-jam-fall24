@@ -70,7 +70,7 @@ public class Trash : MonoBehaviour
         {
             UnfreezePosition();
             _attachedToPlayer = false;
-            this.transform.parent.transform.parent = null;
+            this.transform.parent = null;
         }
     }
 
@@ -97,5 +97,10 @@ public class Trash : MonoBehaviour
     public void UnfreezePosition()
     {
         _rigidbody.constraints = RigidbodyConstraints.None;
+    }
+
+    public void SetAttachedToPlayer(bool att)
+    {
+        _attachedToPlayer = att;
     }
 }

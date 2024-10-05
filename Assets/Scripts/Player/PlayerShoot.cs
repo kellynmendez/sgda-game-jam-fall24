@@ -39,12 +39,15 @@ public class PlayerShoot : MonoBehaviour
             // Setting starting location to shoot origin and activating
             trashToShoot.transform.position = shootOrigin.transform.position;
             trashToShoot.transform.forward = shootOrigin.transform.forward;
+            // Setting trash's shoot settings
+            Trash trash = trashToShoot.GetComponent<Trash>();
+            trash.SetAttachedToPlayer(false);
             trashToShoot.transform.parent = null;
             // Shoot it
             Rigidbody rb = trashToShoot.GetComponent<Rigidbody>();
             if (rb)
             {
-                trashToShoot.GetComponent<Trash>().UnfreezePosition();
+                trash.UnfreezePosition();
                 Vector3 forceToAdd = shootForce * trashToShoot.transform.forward.normalized 
                     + trashToShoot.transform.up * shootUpwardForce;
                 rb.AddForce(forceToAdd, ForceMode.Impulse);
