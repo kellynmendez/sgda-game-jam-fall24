@@ -34,11 +34,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEvent OnNoTrash = null;
     [SerializeField] UnityEvent OnDeath = null;
 
+    [Header("Animation")]
+    [SerializeField] Animator animator;
+    private const string IDLE_ANIM = "Idle";
+    private const string WALK_ANIM = "Walk";
+    private const string THROW_ANIM = "Throw";
+
     [Header("Grounded Check")]
     [SerializeField] Transform _groundCheck;
     [SerializeField] float _groundDistance = 0.4f;
     [SerializeField] LayerMask _groundMask;
-
 
     #region private variables
 
@@ -85,6 +90,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        animator.Play(IDLE_ANIM);
+    }
+
     private void Update()
     {
         Move();
@@ -111,8 +121,17 @@ public class PlayerController : MonoBehaviour
         _charController.Move(_velocity * Time.deltaTime);
 
         // If no input, don't change anything
-        if (_playerDead || _disableInput || _inputVector == Vector2.zero)
+        if (_inputVector == Vector2.zero)
+        {
+            if (_playerDead || _disableInput)
+            {
+                return;
+            }
+            animator.Play(IDLE_ANIM);
             return;
+        }
+
+        animator.Play(WALK_ANIM);
 
         // Moving character
         _moveDirection = new Vector3(_inputVector.x, 0f, _inputVector.y).normalized;
@@ -128,7 +147,6 @@ public class PlayerController : MonoBehaviour
     {
         if (_isGrounded)
         {
-            Debug.Log("Jumping");
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
@@ -178,6 +196,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerTrash.Count > 0)
         {
+            animator.Play(THROW_ANIM);
             OnThrow?.Invoke();
             // Getting latest trash
             GameObject trashToShoot = _playerTrash.Pop().gameObject;
@@ -209,7 +228,6 @@ public class PlayerController : MonoBehaviour
     #region FX
     public void PlayFX(AudioClip sfx)
     {
-        Debug.Log("playing");
         _audioSource.PlayOneShot(sfx, _audioSource.volume);
     }
     #endregion
