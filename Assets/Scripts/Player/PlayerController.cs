@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -27,8 +28,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject shootOrigin;
     [SerializeField] Transform trashPlacementsParent;
 
-    [Header("Health")]
+    [Header("FX")]
     [SerializeField] UnityEvent OnTrashPickUp = null;
+    [SerializeField] UnityEvent OnThrow = null;
+    [SerializeField] UnityEvent OnNoTrash = null;
     [SerializeField] UnityEvent OnDeath = null;
 
     [Header("Grounded Check")]
@@ -158,6 +161,7 @@ public class PlayerController : MonoBehaviour
     #region Shooting
     public void AddTrashToPlayer(Trash trash)
     {
+        OnTrashPickUp?.Invoke();
         _playerTrash.Push(trash);
     }
 
@@ -174,6 +178,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerTrash.Count > 0)
         {
+            OnThrow?.Invoke();
             // Getting latest trash
             GameObject trashToShoot = _playerTrash.Pop().gameObject;
             // Setting starting location to shoot origin and activating
@@ -192,10 +197,6 @@ public class PlayerController : MonoBehaviour
                     + trashToShoot.transform.up * shootUpwardForce;
                 rb.AddForce(forceToAdd, ForceMode.Impulse);
             }
-        }
-        else
-        {
-            Debug.Log("Can't shoot!");
         }
     }
 
@@ -217,11 +218,22 @@ public class PlayerController : MonoBehaviour
     private IEnumerator FullShootRoutine(System.Action ShootFn)
     {
         _disableInput = true;
+        int count = 0;
         while (_held)
         {
             yield return new WaitForSecondsRealtime(shootDelay);
             if (_held)
-                ShootFn();
+            {
+                if (_playerTrash.Count > 0)
+                {
+                    ShootFn();
+                }
+                else if (count == 0)
+                {
+                    OnNoTrash?.Invoke();
+                }
+            }
+            count++;
         }
         yield return null;
         _disableInput = false;
