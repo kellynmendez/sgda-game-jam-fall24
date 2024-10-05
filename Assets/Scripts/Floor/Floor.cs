@@ -18,7 +18,7 @@ public class Floor : MonoBehaviour
     [SerializeField] float shakeAmount = 0.02f;
 
     [Header("Miscellaneous")]
-    [SerializeField] GameObject artToDiasble;
+    [SerializeField] GameObject artToDisable;
 
     private bool _fallTriggered = false;
     private float _timerToFall;
@@ -69,13 +69,13 @@ public class Floor : MonoBehaviour
 
     private void DisableVisuals()
     {
-        artToDiasble.SetActive(false);
+        artToDisable.SetActive(false);
     }
 
     private void ResetPlatform()
     {
         this.transform.position = _startPos;
-        artToDiasble.SetActive(true);
+        artToDisable.SetActive(true);
     }
 
     private static IEnumerator LerpFloor(Transform target, Vector3 from, Vector3 to, 
