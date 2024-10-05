@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Input")]
@@ -16,6 +19,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpHeight = 1f;
     [SerializeField] float gravity = -9.81f;
 
+    [Header("Health")]
+    [SerializeField] UnityEvent OnTrashPickUp = null;
+    [SerializeField] UnityEvent OnDeath = null;
+
     [Header("Grounded Check")]
     [SerializeField] Transform _groundCheck;
     [SerializeField] float _groundDistance = 0.4f;
@@ -26,6 +33,9 @@ public class PlayerController : MonoBehaviour
 
     // General variables
     private CharacterController _charController;
+    private GameManager _gameManager;
+    private bool _playerDead;
+    private bool _disableInput;
 
     // Movement variables
     private float _currVelocity;
@@ -34,11 +44,18 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
     private Vector3 _velocity;
 
+    // FX
+    AudioSource _audioSource;
+
     #endregion
 
     private void Awake()
     {
         _charController = GetComponent<CharacterController>();
+        _gameManager = FindObjectOfType<GameManager>();
+        _audioSource = GetComponent<AudioSource>();
+        _playerDead = false;
+        _disableInput = false;
     }
 
     private void Update()
@@ -64,7 +81,7 @@ public class PlayerController : MonoBehaviour
         _charController.Move(_velocity * Time.deltaTime);
 
         // If no input, don't change anything
-        if (_inputVector == Vector2.zero)
+        if (_playerDead || _disableInput || _inputVector == Vector2.zero)
             return;
 
         // Moving character
@@ -89,5 +106,40 @@ public class PlayerController : MonoBehaviour
     public void SetInputVector(CallbackContext context)
     {
         _inputVector = context.ReadValue<Vector2>();
+    }
+
+    public void DisableInput()
+    {
+        _disableInput = true;
+    }
+
+    public bool IsDead()
+    {
+        return _playerDead;
+    }
+
+    public void Kill()
+    {
+        _playerDead = true;
+        Debug.Log("player DIE");
+        OnDeath?.Invoke();
+        _gameManager.DisableAllPlayerInput();
+        StartCoroutine(EndGame());
+    }
+
+    public void PlayFX(AudioClip sfx)
+    {
+        Debug.Log("playing");
+        _audioSource.PlayOneShot(sfx, _audioSource.volume);
+    }
+
+    private IEnumerator EndGame()
+    {
+        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(3f);
+        Time.timeScale = 1;
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }
