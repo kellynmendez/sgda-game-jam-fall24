@@ -11,7 +11,6 @@ public class TrashPool : MonoBehaviour
     [SerializeField] float spawnRate = 3f;
     [SerializeField] List<GameObject> _trashPrefabs = new List<GameObject>();
 
-    //private Queue<GameObject> _trashToBeRespawned = new Queue<GameObject>();
     private Collider _areaOfSpawn;
 
     private void Awake()
@@ -27,18 +26,8 @@ public class TrashPool : MonoBehaviour
     private void SpawnTrash()
     {
         GameObject toSpawn;
-        //if (_trashToBeRespawned.Count > 0)
-        //{
-        //    toSpawn = _trashToBeRespawned.Dequeue();
-        //    toSpawn.SetActive(true);
-        //    toSpawn.GetComponent<Trash>().Activate();
-        //}
-        //else
-        //{
-            int rand = Random.Range(0, _trashPrefabs.Count);
-            toSpawn = Instantiate(_trashPrefabs[rand]);
-            toSpawn.GetComponent<Trash>().AssignSpawner(this);
-        //}
+        int rand = Random.Range(0, _trashPrefabs.Count);
+        toSpawn = Instantiate(_trashPrefabs[rand]);
         toSpawn.transform.position = RandomPointInBounds(_areaOfSpawn.bounds);
         toSpawn.transform.rotation = Random.rotation;
     }
@@ -50,11 +39,5 @@ public class TrashPool : MonoBehaviour
             Random.Range(bounds.min.y, bounds.max.y),
             Random.Range(bounds.min.z, bounds.max.z)
         );
-    }
-
-    public void AddTrashToRespawn(GameObject trash)
-    {
-        trash.SetActive(false);
-        //_trashToBeRespawned.Enqueue(trash);
     }
 }

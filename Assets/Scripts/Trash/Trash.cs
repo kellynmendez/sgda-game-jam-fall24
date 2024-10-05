@@ -7,10 +7,9 @@ using UnityEngine.WSA;
 public class Trash : MonoBehaviour
 {
     [SerializeField] Collider _triggerToDisable;
-    [SerializeField] GameObject _artToDisable;
+    [SerializeField] GameObject _solidColliderToDisable;
 
     private bool _attachedToPlayer = false;
-    private TrashPool _spawner;
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -58,7 +57,6 @@ public class Trash : MonoBehaviour
                     finalPlace = t;
                 }
             }
-            Debug.Log("parenting");
             this.gameObject.transform.parent = finalPlace;
             FreezePosition();
             this.gameObject.transform.position = finalPlace.position;
@@ -72,32 +70,22 @@ public class Trash : MonoBehaviour
         {
             UnfreezePosition();
             _attachedToPlayer = false;
-            Debug.Log("unparenting!");
             this.transform.parent.transform.parent = null;
         }
     }
 
-    public void AssignSpawner(TrashPool spawner)
-    {
-        _spawner = spawner;
-    }
-
     public void Deactivate()
     {
-        //_triggerToDisable.enabled = false;
-        _artToDisable.SetActive(false);
+        _solidColliderToDisable.SetActive(false);
     }
 
     public void Activate()
     {
-        //_triggerToDisable.enabled = true;
-        _artToDisable.SetActive(true);
+        _solidColliderToDisable.SetActive(true);
     }
 
     public void Kill()
     {
-        //_spawner.AddTrashToRespawn(this.gameObject);
-        //Deactivate();
         Destroy(this.gameObject);
     }
 
