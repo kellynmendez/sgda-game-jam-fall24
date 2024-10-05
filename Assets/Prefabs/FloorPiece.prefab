@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsUntilFall: 3
-  fallTime: 1.5
-  fallDistance: 20
+  fallTime: 0.5
+  fallDistance: 10
   waitToRespawn: 3
   artToDiasble: {fileID: 7546777681934534750}
 --- !u!54 &2895458848612144685

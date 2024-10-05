@@ -11,7 +11,7 @@ public class KillVolume : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
             if (!player.IsDead())
             {
-                player.Kill();
+                //player.Kill();
             }
         }
     }

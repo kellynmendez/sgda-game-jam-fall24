@@ -28,7 +28,7 @@ public class Trash : MonoBehaviour
 
         // If the player is the one shooting this, don't trigger
         //   otherwise, allow player to pick up the trash
-        PlayerShoot player = other.gameObject.GetComponent<PlayerShoot>();
+        PlayerController player = other.gameObject.GetComponent<PlayerController>();
         if(!_attachedToPlayer && player != null)
         {
             _attachedToPlayer = true;
