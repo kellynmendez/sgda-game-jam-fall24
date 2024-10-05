@@ -72,6 +72,9 @@ MonoBehaviour:
   fallTime: 0.5
   fallDistance: 10
   waitToRespawn: 3
+  shakeSpeed: 40
+  shakeAmount: 0.1
+  objToShake: {fileID: 8843945791534633526}
   artToDiasble: {fileID: 7546777681934534750}
 --- !u!54 &2895458848612144685
 Rigidbody:

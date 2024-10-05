@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2907191289955213045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7704980406842095863}
+  - component: {fileID: 2071943843754308841}
+  - component: {fileID: 5176176722228857856}
+  m_Layer: 0
+  m_Name: TrashSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7704980406842095863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2907191289955213045}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.9699993, y: 79.88, z: 0}
+  m_LocalScale: {x: 48, y: 1, z: 30}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2071943843754308841
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2907191289955213045}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5176176722228857856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2907191289955213045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24907bcc02fb74e99c945248d8d5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 0
+  spawnRate: 3
+  _trashPrefabs:
+  - {fileID: 8761496226955612186, guid: fda2587fab343f64d818d2c0e69a973e, type: 3}
+  - {fileID: 8761496226955612186, guid: 14aa00a2eae7cab4fa61185c38ecd64d, type: 3}
+  - {fileID: 8761496226955612186, guid: 4a4ecf9b753f71b478dc515b1b70638c, type: 3}
+  - {fileID: 8761496226955612186, guid: f140a4673d08e2d40aa211a5ef970fed, type: 3}
+  - {fileID: 8761496226955612186, guid: 6a2c8834d2eac6d48ac821eb9d1f95dc, type: 3}
+  - {fileID: 8761496226955612186, guid: 11fa344c05bef634db5ea689f906a500, type: 3}
+  - {fileID: 8761496226955612186, guid: 937f465aa053d7a4a894c19903e124bf, type: 3}
+  - {fileID: 8761496226955612186, guid: 867878f4e64f9db4da3a54e707cac068, type: 3}
