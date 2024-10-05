@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int playerIndex;
 
     [Header("Player Settings")]
-    [SerializeField] float playerSpeed = 5f;
+    [SerializeField] float startPlayerSpeed = 15f;
+    [SerializeField] float speedScaledDecr = 0.1f;
     [SerializeField] float turnSpeed = 5f;
     [SerializeField] float turnSmoothTime = 0.05f;
     [SerializeField] float jumpHeight = 1f;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     private bool _disableInput;
 
     // Movement variables
+    private float _playerSpeed;
     private float _currVelocity;
     private Vector3 _moveDirection = Vector3.zero;
     private Vector2 _inputVector = Vector2.zero;
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _playerSpeed = startPlayerSpeed;
         _charController = GetComponent<CharacterController>();
         _gameManager = FindObjectOfType<GameManager>();
         _audioSource = GetComponent<AudioSource>();
@@ -82,6 +85,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+
+        _playerSpeed = startPlayerSpeed * (1 - (_playerTrash.Count * speedScaledDecr));
     }
 
     public int GetPlayerIndex()
@@ -108,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
         // Moving character
         _moveDirection = new Vector3(_inputVector.x, 0f, _inputVector.y).normalized;
-        _charController.Move(_moveDirection * playerSpeed * Time.deltaTime);
+        _charController.Move(_moveDirection * _playerSpeed * Time.deltaTime);
 
         // Rotating character in move direction
         float targetAngle = Mathf.Atan2(-_moveDirection.z, _moveDirection.x) * Mathf.Rad2Deg;

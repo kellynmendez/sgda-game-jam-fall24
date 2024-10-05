@@ -525,6 +525,13 @@ MonoBehaviour:
   spawnRate: 3
   _trashPrefabs:
   - {fileID: 8761496226955612186, guid: fda2587fab343f64d818d2c0e69a973e, type: 3}
+  - {fileID: 8761496226955612186, guid: 14aa00a2eae7cab4fa61185c38ecd64d, type: 3}
+  - {fileID: 8761496226955612186, guid: 4a4ecf9b753f71b478dc515b1b70638c, type: 3}
+  - {fileID: 8761496226955612186, guid: f140a4673d08e2d40aa211a5ef970fed, type: 3}
+  - {fileID: 8761496226955612186, guid: 6a2c8834d2eac6d48ac821eb9d1f95dc, type: 3}
+  - {fileID: 8761496226955612186, guid: 11fa344c05bef634db5ea689f906a500, type: 3}
+  - {fileID: 8761496226955612186, guid: 937f465aa053d7a4a894c19903e124bf, type: 3}
+  - {fileID: 8761496226955612186, guid: 867878f4e64f9db4da3a54e707cac068, type: 3}
 --- !u!4 &780453915
 Transform:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using UnityEngine.WSA;
 public class Trash : MonoBehaviour
 {
     [SerializeField] Collider _triggerToDisable;
-    [SerializeField] GameObject _solidColliderToDisable;
+    [SerializeField] Collider _solidColliderToDisable;
 
     private bool _attachedToPlayer = false;
     private Rigidbody _rigidbody;
@@ -76,12 +76,12 @@ public class Trash : MonoBehaviour
 
     public void Deactivate()
     {
-        _solidColliderToDisable.SetActive(false);
+        _solidColliderToDisable.enabled = false;
     }
 
     public void Activate()
     {
-        _solidColliderToDisable.SetActive(true);
+        _solidColliderToDisable.enabled = true;
     }
 
     public void Kill()
