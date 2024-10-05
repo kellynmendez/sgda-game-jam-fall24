@@ -36,7 +36,6 @@ public class Floor : MonoBehaviour
         if (_fallTriggered == true && _timerToFall <= 0f)
         {
             // Making platform fall
-            Debug.Log("falling");
             Vector3 toPos = new Vector3(
                 _startPos.x, 
                 _startPos.y - fallDistance, 
@@ -53,7 +52,6 @@ public class Floor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("floor triggered");
             _fallTriggered = true;
         }
     }
