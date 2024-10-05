@@ -71,7 +71,8 @@ MonoBehaviour:
   secondsUntilFall: 3
   fallTime: 0.5
   fallDistance: 10
-  waitToRespawn: 3
+  waitBeforeRespawn: 5
+  respawnTime: 0.2
   shakeSpeed: 40
   shakeAmount: 0.1
   artToDisable: {fileID: 7546777681934534750}

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEngine.GraphicsBuffer;
 
 public class Floor : MonoBehaviour
@@ -11,7 +13,8 @@ public class Floor : MonoBehaviour
     [SerializeField] float secondsUntilFall = 3f;
     [SerializeField] float fallTime = 1.5f;
     [SerializeField] float fallDistance = 20f;
-    [SerializeField] float waitToRespawn = 3f;
+    [SerializeField] float waitBeforeRespawn = 2.5f;
+    [SerializeField] float respawnTime = 0.2f;
 
     [Header("Shake Settings")]
     [SerializeField] float shakeSpeed = 100f;
@@ -23,11 +26,13 @@ public class Floor : MonoBehaviour
     private bool _fallTriggered = false;
     private float _timerToFall;
     private Vector3 _startPos;
+    private Vector3 _startScale;
 
     private void Awake()
     {
         _timerToFall = secondsUntilFall;
         _startPos = transform.position;
+        _startScale = transform.localScale;
     }
 
     void Update()
@@ -52,7 +57,7 @@ public class Floor : MonoBehaviour
                 _startPos.y - fallDistance, 
                 _startPos.z);
             StartCoroutine(LerpFloor(this.transform, this.transform.position, 
-                toPos, fallTime, waitToRespawn, DisableVisuals, ResetPlatform));
+                toPos, fallTime, waitBeforeRespawn, respawnTime, _startScale, DisableVisuals, ResetPlatform));
             // Resetting timer and trigger
             _fallTriggered = false;
             _timerToFall = secondsUntilFall;
@@ -75,33 +80,67 @@ public class Floor : MonoBehaviour
     private void ResetPlatform()
     {
         this.transform.position = _startPos;
+        this.transform.localScale = _startScale;
         artToDisable.SetActive(true);
     }
 
-    private static IEnumerator LerpFloor(Transform target, Vector3 from, Vector3 to, 
-        float duration, float respawnDuration, System.Action OnLerpComplete = null, System.Action OnRespawnComplete = null)
+    private static IEnumerator LerpFloor(Transform target, Vector3 from, Vector3 to,
+        float fallDuration, float respawnWait, float respawnDuration, Vector3 startScale,
+        System.Action OnLerpComplete = null, System.Action OnRespawn = null)
+    {
+        // Fall
+        target.position = from;
+        float elapsedTime = 0;
+        while (elapsedTime < fallDuration)
+        {
+            target.position = Vector3.Lerp(from, to, elapsedTime / fallDuration);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        target.position = to;
+
+        if (OnLerpComplete != null) { OnLerpComplete(); }
+
+        yield return new WaitForSeconds(respawnWait);
+        if (OnRespawn != null) 
+        { 
+            OnRespawn(); 
+        }
+
+        // Respawn
+        elapsedTime = 0;
+        Vector3 smallScale = new Vector3(0.001f, 0.001f, 0.001f);
+        target.localScale = smallScale;
+        while (elapsedTime < respawnDuration)
+        {
+            target.localScale = Vector3.Lerp(smallScale, startScale, elapsedTime / respawnDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        target.localScale = startScale;
+
+        yield break;
+    }
+
+    public static IEnumerator LerpColor(MaskableGraphic graphic, Color from, Color to, float duration, System.Action OnComplete = null)
     {
         // initial value
-        target.position = from;
+        graphic.color = from;
 
         // animate value
         float elapsedTime = 0;
         while (elapsedTime < duration)
         {
-            target.position = Vector3.Lerp(from, to, elapsedTime / duration);
+            graphic.color = Color.Lerp(from, to, elapsedTime / duration);
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // final value
-        target.position = to;
-
-        if (OnLerpComplete != null) { OnLerpComplete(); }
-
-        yield return new WaitForSeconds(respawnDuration);
-
-        if (OnRespawnComplete != null) { OnRespawnComplete(); }
+        graphic.color = to;
+        OnComplete?.Invoke();
         yield break;
     }
 }
