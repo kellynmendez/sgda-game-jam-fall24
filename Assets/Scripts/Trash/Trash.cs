@@ -11,12 +11,19 @@ public class Trash : MonoBehaviour
 
     private bool _attachedToPlayer = false;
     private TrashPool _spawner;
+    private Rigidbody _rigidbody;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("KillVolume"))
         {
             Kill();
+            this.gameObject.transform.parent = null;
             return;
         }
 
@@ -25,26 +32,51 @@ public class Trash : MonoBehaviour
         PlayerShoot player = other.gameObject.GetComponent<PlayerShoot>();
         if(!_attachedToPlayer && player != null)
         {
+            _attachedToPlayer = true;
             // Trash was picked up, disable trash
             player.AddTrashToPlayer(this);
-            Deactivate();
-            _attachedToPlayer = true;
-            this.gameObject.SetActive(false);
+            Vector3 pointOfColl = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+            List<Transform> places = player.GetTrashPlacements();
+            // Find first transform with no children
+            Transform finalPlace = places[0];
+            //foreach (Transform t in places)
+            //{
+            //    if (t.childCount == 0)
+            //    {
+            //        finalPlace = t;
+            //        return;
+            //    }
+            //}
+            // Find closest transform in list with no children
+            float smallestDist = Vector3.Distance(pointOfColl, finalPlace.position);
+            foreach (Transform t in places)
+            {
+                float checkDist = Vector3.Distance(pointOfColl, t.position);
+                if (t.childCount == 0 && checkDist < smallestDist)
+                {
+                    smallestDist = checkDist;
+                    finalPlace = t;
+                }
+            }
+            Debug.Log("parenting");
+            this.gameObject.transform.parent = finalPlace;
+            FreezePosition();
+            this.gameObject.transform.position = finalPlace.position;
             return;
         }
-
     }
 
     private void OnTriggerExit(Collider other)
     {
-        PlayerShoot player = other.gameObject.GetComponent<PlayerShoot>();
-        if (player != null)
+        if (other.CompareTag("Player") && !_attachedToPlayer)
         {
+            UnfreezePosition();
             _attachedToPlayer = false;
-            return;
+            Debug.Log("unparenting!");
+            this.transform.parent.transform.parent = null;
         }
     }
-    
+
     public void AssignSpawner(TrashPool spawner)
     {
         _spawner = spawner;
@@ -55,6 +87,7 @@ public class Trash : MonoBehaviour
         //_triggerToDisable.enabled = false;
         _artToDisable.SetActive(false);
     }
+
     public void Activate()
     {
         //_triggerToDisable.enabled = true;
@@ -63,7 +96,18 @@ public class Trash : MonoBehaviour
 
     public void Kill()
     {
-        _spawner.AddTrashToRespawn(this.gameObject);
-        Deactivate();
+        //_spawner.AddTrashToRespawn(this.gameObject);
+        //Deactivate();
+        Destroy(this.gameObject);
+    }
+
+    public void FreezePosition()
+    {
+        _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    public void UnfreezePosition()
+    {
+        _rigidbody.constraints = RigidbodyConstraints.None;
     }
 }

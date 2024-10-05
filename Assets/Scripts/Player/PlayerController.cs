@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        //ShootRay();
     }
 
     public int GetPlayerIndex()
@@ -64,7 +63,6 @@ public class PlayerController : MonoBehaviour
         _velocity.y += gravity * Time.deltaTime;
         _charController.Move(_velocity * Time.deltaTime);
 
-
         // If no input, don't change anything
         if (_inputVector == Vector2.zero)
             return;
@@ -77,21 +75,6 @@ public class PlayerController : MonoBehaviour
         float targetAngle = Mathf.Atan2(-_moveDirection.z, _moveDirection.x) * Mathf.Rad2Deg;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currVelocity, turnSmoothTime);
         transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
-    }
-
-    private void ShootRay()
-    {
-        RaycastHit rayHitInfo;
-        Vector3 rayDirection = Vector3.down;
-
-        if (Physics.SphereCast(_groundCheck.position, _groundDistance, rayDirection, out rayHitInfo, 10))
-        {
-            Floor floor = rayHitInfo.transform.gameObject.GetComponent<Floor>();
-            if (floor)
-            {
-                //floor.TriggerFloor();
-            }
-        }
     }
 
     public void Jump()
