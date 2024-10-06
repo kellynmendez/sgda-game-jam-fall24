@@ -244,16 +244,9 @@ public class PlayerController : MonoBehaviour
         _disableInput = true;
         while (_held)
         {
-            throwSlider.value = 0;
-            float elapsed = 0f;
-            while (elapsed < shootDelay)
-            {
-                throwSlider.value += Time.deltaTime;
-                elapsed += Time.deltaTime;
-            }
-            throwSlider.value = 1;
+            throwSlider.value = Mathf.Lerp(throwSlider.minValue, throwSlider.maxValue, shootDelay);
 
-            yield return new WaitForSecondsRealtime(shootDelay);
+            //yield return new WaitForSecondsRealtime(shootDelay);
             if (_held)
             {
                 if (_playerTrash.Count > 0)
@@ -263,7 +256,12 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     OnNoTrash?.Invoke();
+                    throwSlider.value = 0;
                 }
+            }
+            else
+            {
+                throwSlider.value = 0;
             }
         }
         yield return null;

@@ -305,6 +305,10 @@ PrefabInstance:
       propertyPath: playerIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7760662664633442658, guid: 75872f64f82663c4eadfa0042baf40c5, type: 3}
+      propertyPath: throwSlider
+      value: 
+      objectReference: {fileID: 193180053}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2292,6 +2296,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7760662664633442658, guid: 75872f64f82663c4eadfa0042baf40c5, type: 3}
+      propertyPath: throwSlider
+      value: 
+      objectReference: {fileID: 1893000946}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
