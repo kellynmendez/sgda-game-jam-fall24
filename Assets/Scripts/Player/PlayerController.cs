@@ -121,12 +121,8 @@ public class PlayerController : MonoBehaviour
         _charController.Move(_velocity * Time.deltaTime);
 
         // If no input, don't change anything
-        if (_inputVector == Vector2.zero)
+        if (_inputVector == Vector2.zero || _playerDead || _disableInput)
         {
-            if (_playerDead || _disableInput)
-            {
-                return;
-            }
             animator.Play(IDLE_ANIM);
             return;
         }
@@ -236,7 +232,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator FullShootRoutine(System.Action ShootFn)
     {
         _disableInput = true;
-        int count = 0;
         while (_held)
         {
             yield return new WaitForSecondsRealtime(shootDelay);
@@ -246,12 +241,11 @@ public class PlayerController : MonoBehaviour
                 {
                     ShootFn();
                 }
-                else if (count == 0)
+                else
                 {
                     OnNoTrash?.Invoke();
                 }
             }
-            count++;
         }
         yield return null;
         _disableInput = false;
