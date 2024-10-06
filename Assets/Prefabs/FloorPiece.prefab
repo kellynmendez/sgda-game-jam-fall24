@@ -76,6 +76,8 @@ MonoBehaviour:
   shakeSpeed: 40
   shakeAmount: 0.1
   artToDisable: {fileID: 7546777681934534750}
+  floorMesh: {fileID: 7042782811598894051}
+  endColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!54 &2895458848612144685
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -207,6 +209,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4379094741402051226}
   m_SourcePrefab: {fileID: 100100000, guid: a74b366796ff64346895895342a60bf4, type: 3}
+--- !u!23 &7042782811598894051 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3830180036055670424, guid: a74b366796ff64346895895342a60bf4, type: 3}
+  m_PrefabInstance: {fileID: 6096596074933267835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8212262774152874124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2696711351484278263, guid: a74b366796ff64346895895342a60bf4, type: 3}

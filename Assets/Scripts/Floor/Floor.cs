@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,14 +20,20 @@ public class Floor : MonoBehaviour
 
     [Header("Miscellaneous")]
     [SerializeField] GameObject artToDisable;
+    [SerializeField] Renderer floorMesh;
+    [SerializeField] Color endColor;
 
     private bool _fallTriggered = false;
     private float _timerToFall;
     private Vector3 _startPos;
     private Vector3 _startScale;
+    private Color _startCol;
+    private Material _floorMat;
 
     private void Awake()
     {
+        _floorMat = floorMesh.material;
+        _startCol = _floorMat.color;
         _timerToFall = secondsUntilFall;
         _startPos = transform.position;
         _startScale = transform.localScale;
@@ -34,9 +41,13 @@ public class Floor : MonoBehaviour
 
     void Update()
     {
+        float elapsed = 0.0f;
         if (_fallTriggered == true)
         {
+            Debug.Log("changing color");
+            elapsed += Time.deltaTime;
             _timerToFall -= Time.deltaTime;
+            _floorMat.color = Color.Lerp(endColor, _startCol, _timerToFall);
             // Shake platform
             this.transform.position = new Vector3(
                 _startPos.x + (Mathf.Sin(_timerToFall * shakeSpeed) * shakeAmount),
@@ -82,6 +93,7 @@ public class Floor : MonoBehaviour
     {
         this.transform.position = _startPos;
         this.transform.localScale = _startScale;
+        _floorMat.color = _startCol;
         artToDisable.SetActive(true);
     }
 
@@ -121,27 +133,6 @@ public class Floor : MonoBehaviour
         }
         target.localScale = startScale;
 
-        yield break;
-    }
-
-    public static IEnumerator LerpColor(MaskableGraphic graphic, Color from, Color to, float duration, System.Action OnComplete = null)
-    {
-        // initial value
-        graphic.color = from;
-
-        // animate value
-        float elapsedTime = 0;
-        while (elapsedTime < duration)
-        {
-            graphic.color = Color.Lerp(from, to, elapsedTime / duration);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // final value
-        graphic.color = to;
-        OnComplete?.Invoke();
         yield break;
     }
 }
