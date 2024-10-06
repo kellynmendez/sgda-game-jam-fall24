@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5a2a609613966a44ab9b1c580a2715d8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a69352c9592a3141a64f14f40633742, type: 2}
     - target: {fileID: 919132149155446097, guid: 5a2a609613966a44ab9b1c580a2715d8, type: 3}
       propertyPath: m_Name
       value: SM_Battery
