@@ -179,6 +179,11 @@ public class PlayerController : MonoBehaviour
         _playerTrash.Push(trash);
     }
 
+    public int GetTrashNumber()
+    {
+        return _playerTrash.Count;
+    }
+
     public void SetIsHeld(bool held)
     {
         _held = held;

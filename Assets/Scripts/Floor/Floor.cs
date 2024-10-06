@@ -65,7 +65,11 @@ public class Floor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _fallTriggered = true;
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player.GetTrashNumber() > 0)
+            {
+                _fallTriggered = true;
+            }
         }
     }
 
