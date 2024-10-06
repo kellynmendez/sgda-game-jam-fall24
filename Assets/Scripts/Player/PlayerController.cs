@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
             animator.Play(THROW_ANIM);
             OnThrow?.Invoke();
             // Getting latest trash
-            GameObject trashToShoot = _playerTrash.Pop().gameObject;
+            GameObject trashToShoot = _playerTrash.Pop()?.gameObject;
             // Setting starting location to shoot origin and activating
             trashToShoot.transform.position = shootOrigin.transform.position;
             trashToShoot.transform.forward = shootOrigin.transform.forward;
@@ -241,12 +241,30 @@ public class PlayerController : MonoBehaviour
     #region Coroutines
     private IEnumerator FullShootRoutine(System.Action ShootFn)
     {
+        int count = 0;
         _disableInput = true;
         while (_held)
         {
-            throwSlider.value = Mathf.Lerp(throwSlider.minValue, throwSlider.maxValue, shootDelay);
+            if (count == 0)
+            {
+                throwSlider.value = 0;
+                float fillTime = 0.0f;
+                float elapsed = 0f;
+                while (elapsed < shootDelay)
+                {
+                    throwSlider.value = Mathf.Lerp(throwSlider.minValue, throwSlider.maxValue, fillTime);
+                    fillTime += (1/shootDelay) * Time.deltaTime;
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+                throwSlider.value = 1;
+            }
+            else
+            {
+                yield return new WaitForSeconds(shootDelay);
+            }
+            count++;
 
-            //yield return new WaitForSecondsRealtime(shootDelay);
             if (_held)
             {
                 if (_playerTrash.Count > 0)
