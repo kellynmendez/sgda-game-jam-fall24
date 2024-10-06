@@ -4,6 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(CharacterController))]
@@ -27,6 +28,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float shootDelay = 0.2f;
     [SerializeField] GameObject shootOrigin;
     [SerializeField] Transform trashPlacementsParent;
+
+    [Header("UI")]
+    [SerializeField] Slider throwSlider;
+    private float _throwMax = 1;
 
     [Header("FX")]
     [SerializeField] UnityEvent OnTrashPickUp = null;
@@ -239,6 +244,15 @@ public class PlayerController : MonoBehaviour
         _disableInput = true;
         while (_held)
         {
+            throwSlider.value = 0;
+            float elapsed = 0f;
+            while (elapsed < shootDelay)
+            {
+                throwSlider.value += Time.deltaTime;
+                elapsed += Time.deltaTime;
+            }
+            throwSlider.value = 1;
+
             yield return new WaitForSecondsRealtime(shootDelay);
             if (_held)
             {
