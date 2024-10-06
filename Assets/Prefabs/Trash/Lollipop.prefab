@@ -83,10 +83,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.33
-  m_Height: 1.78
+  m_Radius: 0.41
+  m_Height: 2.29
   m_Direction: 1
-  m_Center: {x: 0, y: -0.09, z: 0}
+  m_Center: {x: 0, y: -0.27, z: 0}
 --- !u!1 &8761496226955612186
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,8 +169,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.58, y: 1.25, z: 0.58}
-  m_Center: {x: 0, y: 0.12, z: 0}
+  m_Size: {x: 1, y: 2.42, z: 1}
+  m_Center: {x: 0, y: -0.28, z: 0}
 --- !u!114 &1515073274450596665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,15 +195,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 274128865301347898, guid: 61c9a7904bc9d7048acdf61e2dfc753c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 274128865301347898, guid: 61c9a7904bc9d7048acdf61e2dfc753c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 274128865301347898, guid: 61c9a7904bc9d7048acdf61e2dfc753c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 274128865301347898, guid: 61c9a7904bc9d7048acdf61e2dfc753c, type: 3}
       propertyPath: m_LocalPosition.x

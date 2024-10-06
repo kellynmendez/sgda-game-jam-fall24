@@ -146,8 +146,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.51, y: 2.14, z: 1.42}
-  m_Center: {x: -0.79, y: 1.09, z: 0}
+  m_Size: {x: 6.1899996, y: 4.0066648, z: 4.23}
+  m_Center: {x: -1.02, y: 2.0233324, z: 0}
 --- !u!114 &7760662664633442658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,9 +167,9 @@ MonoBehaviour:
   turnSmoothTime: 0.05
   jumpHeight: 3
   gravity: -60
-  shootForce: 25
-  shootUpwardForce: 10
-  shootDelay: 0.2
+  shootForce: 35
+  shootUpwardForce: 5
+  shootDelay: 0.6
   shootOrigin: {fileID: 5178382080623513778}
   trashPlacementsParent: {fileID: 1178734768533532391}
   OnTrashPickUp:
