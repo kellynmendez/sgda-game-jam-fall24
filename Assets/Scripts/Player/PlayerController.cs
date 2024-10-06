@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Settings")]
     [SerializeField] float startPlayerSpeed = 15f;
-    [SerializeField] float speedScaledDecr = 0.1f;
+    [SerializeField] float speedScaledDecr = 0.08f;
     [SerializeField] float turnSpeed = 5f;
     [SerializeField] float turnSmoothTime = 0.05f;
     [SerializeField] float jumpHeight = 1f;
@@ -104,7 +104,12 @@ public class PlayerController : MonoBehaviour
     {
         Move();
 
-        _playerSpeed = startPlayerSpeed * (1 - (_playerTrash.Count * speedScaledDecr));
+        float scaleVal = 1 - (_playerTrash.Count * speedScaledDecr);
+        if (scaleVal < 0)
+        {
+            scaleVal = 0;
+        }
+        _playerSpeed = startPlayerSpeed * scaleVal;
     }
 
     public int GetPlayerIndex()

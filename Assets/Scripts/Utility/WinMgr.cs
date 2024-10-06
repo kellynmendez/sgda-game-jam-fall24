@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WinMgr : MonoBehaviour
 {
@@ -25,5 +26,29 @@ public class WinMgr : MonoBehaviour
             player01.SetActive(true);
             winnerText.text = "PLAYER 1 WINS!";
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            GoToNextLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            SceneManager.LoadScene("MainScene");
+        }
+    }
+    public void GoToNextLevel()
+    {
+        int nextBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextBuildIndex >= SceneManager.sceneCountInBuildSettings) nextBuildIndex = 0;
+        GoToLevel(nextBuildIndex);
+    }
+
+    public void GoToLevel(int buildIndex)
+    {
+        SceneManager.LoadScene(buildIndex);
     }
 }
