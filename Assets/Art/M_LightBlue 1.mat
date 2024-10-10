@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MI_FarFog
+  m_Name: M_LightBlue 1
   m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 2100000, guid: 54d3ecd4f7acff84e817b6ffe87036ed, type: 2}
   m_ModifiedSerializedProperties: 16
@@ -35,12 +35,12 @@ Material:
     - _DstBlend: 10
     - _Glossiness: 0.461
     - _Mode: 2
-    - _SoftParticlesFarFadeDistance: 45.2
-    - _SoftParticlesNearFadeDistance: 10.7
+    - _SoftParticlesFarFadeDistance: 26.51
+    - _SoftParticlesNearFadeDistance: 0
     - _SrcBlend: 5
     - _ZWrite: 0
     m_Colors:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 0.048383094, g: 0.015574933, b: 0.09433961, a: 1}
-    - _SoftParticleFadeParams: {r: 10.7, g: 0.028985506, b: 0, a: 0}
+    - _Color: {r: 0.0006746616, g: 0, b: 0.0754717, a: 1}
+    - _SoftParticleFadeParams: {r: 0, g: 0.037721615, b: 0, a: 0}
   m_BuildTextureStacks: []
